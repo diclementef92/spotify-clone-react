@@ -33,18 +33,20 @@ const Home = () => {
             <a href="#">DISCOVER</a>
           </div>
         </div>
-        <div className="row">
-          <div className="col-10">
-            <div id="searchResults" style={{ display: "none" }}>
-              <h2>Search Results</h2>
-              <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3">
-                {results.map((song) => (
-                  <Album key={song.id} songInfo={song} />
-                ))}
+        {results.length > 0 && (
+          <div className="row">
+            <div className="col-10">
+              <div id="searchResults">
+                <h2>Search Results</h2>
+                <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3">
+                  {results.map((song) => (
+                    <Album key={song.id} songInfo={song} />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
         <div className="row">
           <div className="col-10">
             <div id="rock">
