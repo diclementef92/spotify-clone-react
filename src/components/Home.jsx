@@ -6,16 +6,32 @@ import SideBar from "./SideBar";
 const Home = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
+  const [rockAlbums, setRockAlbum] = useState([]);
+  const [popAlbums, setPopAlbums] = useState([]);
+  const [hiphopAlbums, setHipHopAlbums] = useState([]);
 
   const retriveData = async () => {
-    let data = await fetchAlbums(query);
-    setResults(data);
-    console.log(data);
+    let rock = await fetchAlbums("rock");
+    setRockAlbum(rock.slice(0, 4));
+
+    let pop = await fetchAlbums("pop");
+    setPopAlbums(pop.slice(0, 4));
+
+    let hiphop = await fetchAlbums("hiphop");
+    setHipHopAlbums(hiphop.slice(0, 4));
   };
+
+  const retriveSearchData = async () => {
+    let data = await fetchAlbums(query.toLowerCase());
+    setResults(data);
+  };
+  useEffect(() => {
+    retriveData();
+  }, []);
 
   useEffect(() => {
     if (query) {
-      retriveData();
+      retriveSearchData();
     }
   }, [query]);
 
@@ -54,7 +70,11 @@ const Home = () => {
               <div
                 className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
                 id="rockSection"
-              ></div>
+              >
+                {rockAlbums?.map((song) => (
+                  <Album key={song.id} songInfo={song} />
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -65,7 +85,11 @@ const Home = () => {
               <div
                 className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
                 id="popSection"
-              ></div>
+              >
+                {popAlbums?.map((song) => (
+                  <Album key={song.id} songInfo={song} />
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -76,7 +100,11 @@ const Home = () => {
               <div
                 className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
                 id="hipHopSection"
-              ></div>
+              >
+                {hiphopAlbums?.map((song) => (
+                  <Album key={song.id} songInfo={song} />
+                ))}
+              </div>
             </div>
           </div>
         </div>
