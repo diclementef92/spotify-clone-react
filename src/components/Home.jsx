@@ -10,6 +10,8 @@ const Home = () => {
   const [popAlbums, setPopAlbums] = useState([]);
   const [hiphopAlbums, setHipHopAlbums] = useState([]);
 
+  const [helloMessage, setHelloMessage] = useState("");
+
   const retriveData = async () => {
     let rock = await fetchAlbums("rock");
     setRockAlbum(rock.slice(0, 4));
@@ -25,8 +27,34 @@ const Home = () => {
     let data = await fetchAlbums(query.toLowerCase());
     setResults(data);
   };
+
+  const setDayTime = () => {
+    let date = new Date();
+    let hour = date.getHours();
+    let message = "Good ";
+    switch (true) {
+      case hour < 8:
+        message += "night";
+        console.log();
+        break;
+      case hour < 12:
+        message += "morning";
+        break;
+      case hour < 18:
+        message += "afternoon";
+        break;
+      case hour < 24:
+        message += "evening";
+        break;
+      default:
+        console.log("error in setDayTime()", hour);
+    }
+    setHelloMessage(message);
+  };
+
   useEffect(() => {
     retriveData();
+    setDayTime();
   }, []);
 
   useEffect(() => {
@@ -48,6 +76,9 @@ const Home = () => {
             <a href="#">NEW RELEASES</a>
             <a href="#">DISCOVER</a>
           </div>
+        </div>
+        <div className="row">
+          <h2 className="text-light mt-4">{helloMessage}</h2>
         </div>
         {results.length > 0 && (
           <div className="row">

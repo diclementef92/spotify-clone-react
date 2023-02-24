@@ -1,5 +1,4 @@
 const Album = ({ songInfo }) => {
-  console.log(songInfo);
   return (
     <div class="col-sm-auto col-md-auto text-center mb-5">
       <a href="/album_page.html?id=${songInfo.album.id}">
