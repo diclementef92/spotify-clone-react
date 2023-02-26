@@ -1,11 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import Album from "./components/Album";
 import Artist from "./components/Artist";
 import Home from "./components/Home";
-import SideBar from "./components/SideBar";
-import { useState } from "react";
+import AlbumPage from "./components/AlbumPage";
 
 function App() {
   return (
@@ -15,7 +13,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/artist/:id" element={<Artist />} />
 
-          <Route path="/album/:id" element={<Album />} />
+          <Route path="/album/:id" element={<AlbumPage />} />
         </Routes>
       </BrowserRouter>
     </>

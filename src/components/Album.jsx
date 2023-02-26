@@ -1,15 +1,19 @@
+import { Image } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+
 const Album = ({ songInfo }) => {
+  const navigate = useNavigate();
   return (
-    <div class="col-sm-auto col-md-auto text-center mb-5">
-      <a href="/album_page.html?id=${songInfo.album.id}">
-        <img
-          class="img-fluid"
-          src={
-            songInfo.album.cover_medium // creating the album image anchor
-          }
-          alt="1"
-        />
-      </a>
+    <div className="col-sm-auto col-md-auto text-center mb-5">
+      <Image
+        className="img-fluid"
+        src={
+          songInfo.album.cover_medium // creating the album image anchor
+        }
+        alt="1"
+        onClick={() => navigate(`/album/${songInfo.album.id}`)}
+      />
+
       <p>
         <a href="#">
           Track: "
@@ -20,7 +24,7 @@ const Album = ({ songInfo }) => {
           }
           "
         </a>
-        <a href="/album_page.html?id=${songInfo.album.id}">
+        <a href={`/album_page.html?id=${songInfo.album.id}`}>
           Album: "$
           {
             songInfo.album.title.length < 16

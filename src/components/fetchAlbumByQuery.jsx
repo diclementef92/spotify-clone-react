@@ -1,4 +1,4 @@
-const fetchAlbums = async (value) => {
+const fetchAlbumsByQuery = async (value) => {
   let headers = new Headers({
     // sets the headers
     "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
@@ -22,4 +22,4 @@ const fetchAlbums = async (value) => {
     console.log(err);
   }
 };
-export default fetchAlbums;
+export default fetchAlbumsByQuery;

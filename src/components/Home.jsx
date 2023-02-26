@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Album from "./Album";
-import fetchAlbums from "./fetchAlbum";
+import fetchAlbums from "./fetchAlbumByQuery";
 import SideBar from "./SideBar";
 
 const Home = () => {
